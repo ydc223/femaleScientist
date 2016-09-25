@@ -64,7 +64,7 @@ app.get('/gallery', function(req, res, err){
         res.write('<h1>my gallery</h1>');
         //res.head('<link rel="stylesheet" href="style.css"/>');
         for(var i = 0; i < image.length; i++){
-            res.write('<img style="margin: 5px,5px,5px,5px;" id="picture" src="images/'+image[i]+'"/>');
+            res.write('<img style="left:25%; margin:5px 5px 5px 5px;" height="auto" max-width="100%" src="images/'+image[i]+'"/>');
         }
         res.end();
             console.log(files);
