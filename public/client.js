@@ -9,6 +9,7 @@ socket.on('connected', function(){
     console.log('connected to socket');
 });
 
+
 //function to be called when the user clicks the save button!
 function saveImage(){
     //we get the canvas
@@ -19,4 +20,5 @@ function saveImage(){
 
     //then we send that data through the socket towards the server, and labeling that event "frame_to_server"
     socket.emit('frame_to_server', dataURL);
+    location.href = "/gallery";
 }

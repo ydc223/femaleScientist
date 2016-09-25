@@ -1,3 +1,4 @@
+
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -10,6 +11,7 @@ var app = new express();
 app.set('port', 8080);
 
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 var myServer = http.createServer(app);
 myServer.listen(app.get('port'), function(){
@@ -41,15 +43,49 @@ io.sockets.on('connection', function(socket){
         //give a name for our file to save as
         fullDate = d.getDate()+d.getMonth()+d.getFullYear()+d.getTime();
         var name = 'public/images/'+fullDate+'.webp';
-
-
         //now we pass that data and we specify where to save it
         base64_decode(buff, './'+name);//we will save it to the same directory where the server.js script lives. you might want to change that!
     });
 });
 
-//turns base64 string to file data
 function base64_decode(file_name, image){
     //get the data, and write it as a .webp to the disk at the given location
     fs.writeFileSync(image, file_name);
 }
+
+
+app.get('/gallery', function(req, res, err){
+    var image;
+    fs.readdir('public/images', (err, files) => {
+        if (err) {
+            throw err;
+        }
+        image = files;
+        res.write('<h1>my gallery</h1>');
+        //res.head('<link rel="stylesheet" href="style.css"/>');
+        for(var i = 0; i < image.length; i++){
+            res.write('<img style="margin: 5px,5px,5px,5px;" id="picture" src="images/'+image[i]+'"/>');
+        }
+        res.end();
+            console.log(files);
+        });
+//this is where you do the fs.readdir thing to get your array of paths
+
+
+
+
+
+//below is a place to start for the react rendering part
+    //var data = {};
+    //data.img_paths = [];
+
+    //for(var i = 0; i<images; i++){
+    //	data.img_paths[i] = images[i];
+    //}
+
+    //res.render('results', data);
+});
+
+
+
+//turns base64 string to file data
