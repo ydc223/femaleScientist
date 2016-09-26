@@ -56,15 +56,25 @@ function base64_decode(file_name, image){
 
 app.get('/gallery', function(req, res, err){
     var image;
+
     fs.readdir('public/images', (err, files) => {
         if (err) {
             throw err;
         }
         image = files;
-        res.write('<div background-color: beige; align="center"><h1>The Scientist Gallery</h1></div>');
+        res.write('<body style="background-color: tan">');
+        res.write('<div align="center"><h1>Error 404 - Female Scientists Not Found</h1></div>');
+        res.write('<div style = "border-top: 1px solid #000; padding-top: 10px;"></div>');
+        res.write('<a href="http://westem.nyuad.im" style="margin: -20px -50px; position: relative; top:50%; left:40%;">Get involved with women empowered in STEM fields</a>');
+        res.write('<div style = " padding-top: 30px;"></div>');
+        res.write('<iframe style ="margin: -20px -50px; position: relative; top:50%; left:25%;" width="784" height="441" src="https://www.youtube.com/embed/EgkqeJnze0M" frameborder="0" allowfullscreen></iframe> ');
+
+        res.write('<div style = "border-bottom: 1px solid #000; padding-top: 50px;"></div>');
+        res.write('<div style = " padding-top: 30px;"></div>');
+        //res.write('<div style = " padding-top: 30px;"></div>');
         //res.head('<link rel="stylesheet" href="style.css"/>');
         for(var i = image.length-1; i >=0; i--){
-            res.write('<img style="border-color: #111111; border-style: solid; left:25%; margin:5px 5px 5px 5px;" height="auto" max-width="30%" src="images/'+image[i]+'"/>');
+            res.write('<img width = "315" height="315" style="border-color: #111111; border-style: solid; display: inline-block;float: left;margin: 5px 5px;"src="images/'+image[i]+'"/>');
         }
         res.end();
             console.log(files);
