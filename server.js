@@ -79,21 +79,7 @@ app.get('/gallery', function(req, res, err){
         res.end();
             console.log(files);
         });
-//this is where you do the fs.readdir thing to get your array of paths
 
-
-
-
-
-//below is a place to start for the react rendering part
-    //var data = {};
-    //data.img_paths = [];
-
-    //for(var i = 0; i<images; i++){
-    //	data.img_paths[i] = images[i];
-    //}
-
-    //res.render('results', data);
 });
 
 
